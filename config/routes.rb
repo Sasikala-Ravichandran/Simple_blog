@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations' }, :path => 'accounts'
+
+  resources :users do
+    resources :posts
+  end
+
+  resources :posts do
+    resources :comments
+  end
+
+  resources :tags
+
   get 'show' => 'pages#show'
   get 'view' => 'pages#view'
   root 'pages#index'
