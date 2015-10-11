@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }, :path => 'accounts'
 
+resources :posts do
+    resources :comments
+end
+
+# only for show
   resources :users do
-    resources :posts
+    resources :posts # only 
   end
 
-  resources :posts do
-    resources :comments
-  end
+  
 
   resources :tags
 

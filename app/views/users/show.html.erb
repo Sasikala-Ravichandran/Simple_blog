@@ -1,0 +1,11 @@
+<%= @user.name.capitalize %> Dashboard:
+<br>
+<hr>
+<%= link_to "New Post", new_user_post_path(@user.id) %>
+<hr>
+List of Posts from you: <br>
+<% count = 1 %>
+<%@user.posts.each do |post|%>
+	<%= count %>.<%= link_to post.title, user_post_path(@user.id, post)%><br>
+	<% count = count+1 %>
+<% end %>
