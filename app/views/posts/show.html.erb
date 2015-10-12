@@ -9,19 +9,12 @@ Content: <%= @post.body %><br>
 									data: {confirm: "Delete the post?"}%>
 
 
- <hr>
-Comments:
 <hr>
-<% @post.comments.each do |comment| %>
-    <%= link_to comment.commenter.name unless comment.user_id.nil? %><br>
-    <%= comment.body %><br>
-    <%= time_ago_in_words(comment.created_at) %><br>
-    <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
-    <hr>
-<% end %>
-
-
+<h3>Comments(<%= @post.comments.count %>):</h3>
 <hr>
-Add Comments
+    <%= render @post.comments %>
+  
+<h3>Add Comments </h3>
 
-<%= render 'comments/form'%>
+   <%= render 'comments/form' %>
+<!-- <%= link_to "new comments", new_post_comment_path(@post)%> -->

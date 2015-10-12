@@ -4,8 +4,9 @@
 <%= link_to "New Post", new_user_post_path(@user.id) %>
 <hr>
 List of Posts from you: <br>
+    <!-- to be deleted at the end rendering <% @user.posts %> -->
 <% count = 1 %>
 <%@user.posts.each do |post|%>
 	<%= count %>.<%= link_to post.title, user_post_path(@user.id, post)%><br>
 	<% count = count+1 %>
-<% end %>
+<% end %> 
