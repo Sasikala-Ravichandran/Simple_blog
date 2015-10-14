@@ -1,20 +1,27 @@
-<%= link_to "Back to Dashboard", current_user%><br>
+<%= link_to "Back to Dashboard", @user%><br>
 <hr>
 Title: <%= @post.title %><br>
 
 Content: <%= @post.body %><br>
 
-<%= link_to "Edit", edit_user_post_path(current_user.id, @post)%>
-<%= link_to "Delete", user_post_path(current_user.id, @post), method: :delete, 
+
+
+<%= link_to "Edit", edit_user_post_path(@user, @post)%>
+<%= link_to "Delete", user_post_path(@user, @post), method: :delete, 
 									data: {confirm: "Delete the post?"}%>
 
 
+<br>
+<% unless @post.tags.empty? %>
+Tags of the post: <%= render @post.tags %>
 <hr>
+<% end %>
+
+
 <h3>Comments(<%= @post.comments.count %>):</h3>
 <hr>
-    <%= render @post.comments %>
+<%= render @post.comments %>
   
 <h3>Add Comments </h3>
-
-   <%= render 'comments/form' %>
+<%= render 'comments/form' %>
 <!-- <%= link_to "new comments", new_post_comment_path(@post)%> -->

@@ -3,10 +3,10 @@ class Post < ActiveRecord::Base
 
 	belongs_to :user
 
-	has_many :comments
+	has_many :comments, dependent: :destroy
 
 	has_many :taggings
-	has_many :tags, through: :taggings
+	has_many :tags, through: :taggings, dependent: :destroy
 
 
 	def tag_list=(str)

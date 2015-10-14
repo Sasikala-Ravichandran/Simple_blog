@@ -7,6 +7,7 @@ end
 
 # only for show
   resources :users do
+    resource :profile
     resources :posts # only 
   end
 

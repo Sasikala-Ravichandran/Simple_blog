@@ -1,13 +1,18 @@
 class PostsController < ApplicationController
 
+	# use before_filter do
+	#  @user = User.find(params[:user_id])
+	#end
+	  
+	before_action :set_user 
 	
 	def new
-		@user = User.find(params[:user_id])
+		 
 		@post = @user.posts.build
 	end
 
 	def create
-		@user = User.find(params[:user_id])
+		 
 		@post = @user.posts.build(post_params)
 		@post.save
 
@@ -15,16 +20,17 @@ class PostsController < ApplicationController
 	end
 
     def show
+    	 
 		@post = Post.find(params[:id])
 	end
 
     def edit
-    	@user = User.find(params[:user_id])
+    	 
     	@post = Post.find(params[:id])
     end
 
     def update
-    	@user = User.find(params[:user_id])
+    	 
     	@post = Post.find(params[:id])
         @post.update(post_params)
 
@@ -32,7 +38,7 @@ class PostsController < ApplicationController
     end
 
     def destroy
-    	@user = User.find(params[:user_id])
+    	
     	@post = Post.find(params[:id])
     	@user.posts.destroy(@post)
        
@@ -43,6 +49,10 @@ class PostsController < ApplicationController
 	private
 	def post_params
 		params.require(:post).permit(:title, :body, :tag_list)
+	end
+
+	def set_user
+		@user = User.find(params[:user_id])
 	end
 end
 

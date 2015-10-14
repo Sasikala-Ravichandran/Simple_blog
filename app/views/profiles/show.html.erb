@@ -1,0 +1,6 @@
+Name : <%= @user.profile.uname %><br>
+About: <%= @user.profile.about %><br>
+Post created: <%= @user.posts.count %><br>
+Commented <%= @user.comments.count%> times <br>
+
+<%= link_to "Back", root_path%>

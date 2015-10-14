@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
 	before_action :authenticate_user!
-
+    before_action do 
+       @post = Post.find(params[:post_id])
+    end
+    	
+     
   	def create
-		@post = Post.find(params[:post_id])
+		
 		@comment = @post.comments.build(comment_params)
 		@comment.user_id = current_user.id
 		@comment.save
@@ -11,12 +15,12 @@ class CommentsController < ApplicationController
 	end
 
     def edit
-    	@post = Post.find(params[:post_id])
+     
     	@comment =Comment.find(params[:id])
     end
 
     def update
-    	 @post = Post.find(params[:post_id])
+    	 
     	 @comment = Comment.find(params[:id])
     	 @comment.update(comment_params)
 
@@ -24,7 +28,7 @@ class CommentsController < ApplicationController
     end
 
 	def destroy
-		@post = Post.find(params[:post_id])
+		 
 		@comment = Comment.find(params[:id])
 		@post.comments.destroy(@comment)
 

@@ -1,7 +1,24 @@
+<%= link_to "Home", root_path %>
 <%= @user.name.capitalize %> Dashboard:
-<br>
+ 
 <hr>
-<%= link_to "New Post", new_user_post_path(@user.id) %>
+<h3>Profile</h3>
+  
+    <% if @user.profile.nil?%>
+       <p style="color: green"> Please do create the profile </p>
+       <%= link_to "create Profile", new_user_profile_path(@user) %>
+    <% else %>
+	    <%= @profile.uname  %><br>
+	   <%= @profile.about   %><br>
+	   <%= @profile.website unless @profile.website.empty?%><br>
+	   <%= link_to "EditProfile", {:controller => "profiles", :action => "edit", :user_id =>@user.id, :id => @profile.id } %>
+    <% end %>
+ 
+<hr>
+
+<%= link_to "New Post", new_user_post_path(@user) %>
+
+
 <hr>
 List of Posts from you: <br>
     <!-- to be deleted at the end rendering <% @user.posts %> -->

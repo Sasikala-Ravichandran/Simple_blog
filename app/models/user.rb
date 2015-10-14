@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
  validates :name, presence: true, length: { minimum: 4}
 
+ has_one :profile 
  has_many :posts
 
  has_many :comments
