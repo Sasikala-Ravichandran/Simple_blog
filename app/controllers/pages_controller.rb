@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+	
+	before_action :store_return_to, only: [:show]
 	def index
 		@posts = Post.all
 

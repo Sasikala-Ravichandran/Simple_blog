@@ -3,4 +3,6 @@ About: <%= @user.profile.about %><br>
 Post created: <%= @user.posts.count %><br>
 Commented <%= @user.comments.count%> times <br>
 
-<%= link_to "Back", root_path%>
+
+<%= link_to "Dashboard", current_user%>
+<%= link_to "Back", {:controller => "pages", :action => "show", :id => @post} %>

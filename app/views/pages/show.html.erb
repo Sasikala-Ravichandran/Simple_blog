@@ -1,4 +1,29 @@
-<h3><%= @post.title %></h3><br>
-<%= @post.body %><br>
-<%= link_to @post.user.profile.uname, {:controller => "profiles", :action => "show", :user_id => @post.user } %><br>
+<% if user_signed_in? %>
+   <%= link_to "Dashboard", current_user %>
+<% end %>
+<h3>Title: <%= @post.title %></h3><br>
+Body: <%= @post.body %><br>
+ 
+Authored by: <%= link_to @post.user.profile.uname, {:controller => "profiles", :action => "show", :user_id => @post.user, :post_id => @post } %><br>
+
+
+<br>
+<% unless @post.tags.empty? %>
+Tags of the post: <%= render @post.tags %>
+<hr>
+<% end %>
+
+
+<h3>Comments(<%= @post.comments.count %>):</h3>
+<hr>
+<%= render @post.comments %>
+  
+<% if user_signed_in? %>  
+<h3>Add Comments </h3>
+<%= render 'comments/form' %>
+<% else %>
+  <%= link_to "login to comment", new_user_session_path %><br>
+    <%= link_to "sign_up to comment", new_user_registration_path %><br>
+<% end %>
+
 <%= link_to "Back Home", root_path %>

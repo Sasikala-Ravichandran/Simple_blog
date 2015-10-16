@@ -1,8 +1,8 @@
-<%= link_to "Home", root_path %>
-<%= @user.name.capitalize %> Dashboard:
+<%= link_to "All posts", root_path %><br>
+<h3>
+<%= @user.name.capitalize %>'s Dashboard: </h3>
  
-<hr>
-<h3>Profile</h3>
+<h4>Profile</h4>
   
     <% if @user.profile.nil?%>
        <p style="color: green"> Please do create the profile </p>

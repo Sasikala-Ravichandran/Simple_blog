@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
-
+ 
+  before_action :store_return_to, only: [:show]
   before_action :authenticate_user!, only: [:show]
-  
+
   before_action do 
     @user = User.find(params[:user_id])
   end
@@ -20,6 +21,7 @@ class ProfilesController < ApplicationController
 	end
     
     def show
+      @post = Post.find(params[:post_id])
     end
     
     def edit
@@ -39,6 +41,8 @@ class ProfilesController < ApplicationController
    def profile_params
    	   params.require(:profile).permit(:uname, :about, :website)
    end
+
+  
 end
 
 

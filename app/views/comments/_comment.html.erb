@@ -1,7 +1,12 @@
  
-  <%= link_to comment.commenter.profile.uname, user_path(comment.user_id)  %><br>
+  <%= link_to comment.commenter.profile.uname, {:controller => "profiles", :action => "show", :user_id => comment.user_id, :post_id => @post }  %><br>
   <%= comment.body %><br>
   <%= time_ago_in_words(comment.created_at) %><br>
+
+   <% if user_signed_in? %>
+  <% if(@post.user.name == current_user.name) %>
   <%= link_to "Edit", edit_post_comment_path(@post, comment)%>
   <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+  <% end %>
+  <% end %>
   <hr>
