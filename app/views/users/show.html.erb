@@ -1,29 +1,22 @@
-<%= link_to "All posts", root_path %><br>
-<h3>
-<%= @user.name.capitalize %>'s Dashboard: </h3>
- 
-<h4>Profile</h4>
-  
-    <% if @user.profile.nil?%>
-       <p style="color: green"> Please do create the profile </p>
-       <%= link_to "create Profile", new_user_profile_path(@user) %>
-    <% else %>
-	    <%= @profile.uname  %><br>
-	   <%= @profile.about   %><br>
-	   <%= @profile.website unless @profile.website.empty?%><br>
-	   <%= link_to "EditProfile", {:controller => "profiles", :action => "edit", :user_id =>@user.id, :id => @profile.id } %>
-    <% end %>
- 
-<hr>
+  <div class="search_input">
+	<%= render 'pages/form' %>
+	<!--<%= render 'pages/form1' %> -->
+  </div>
 
-<%= link_to "New Post", new_user_post_path(@user) %>
+<section class="logged_posts_wrapper">
+	<div class="sub_header">
+		<%= link_to "All posts", root_path, :class => "right buttons" %><br>
+		<%= link_to "New Post", new_user_post_path(@user), :class => "left buttons" %>
+		<div class="clear"></div>
+	</div>
+	<div class="left_padding">	
+	  <%@user.posts.each do |post|%>
+		<div class="logged_post_wrapper"> 
+		    <p class="title"><%= link_to post.title, user_post_path(@user.id, post)%></p>
+			<p class="date">Date: <em><%= post.created_at.strftime("%B, %d, %Y") %></em></p>
+			<div class ="line"></div>
+		</div>
+	  <% end %>
+	</div>
 
-
-<hr>
-List of Posts from you: <br>
-    <!-- to be deleted at the end rendering <% @user.posts %> -->
-<% count = 1 %>
-<%@user.posts.each do |post|%>
-	<%= count %>.<%= link_to post.title, user_post_path(@user.id, post)%><br>
-	<% count = count+1 %>
-<% end %> 
+ </section> 

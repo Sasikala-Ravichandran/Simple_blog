@@ -17,6 +17,8 @@ end
 
   get 'show' => 'pages#show'
   get 'view' => 'pages#view'
+  
+  get 'search' => 'pages#search'
   root 'pages#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

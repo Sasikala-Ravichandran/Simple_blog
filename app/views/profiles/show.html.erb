@@ -1,8 +1,11 @@
-Name : <%= @user.profile.uname %><br>
-About: <%= @user.profile.about %><br>
-Post created: <%= @user.posts.count %><br>
-Commented <%= @user.comments.count%> times <br>
-
-
-<%= link_to "Dashboard", current_user%>
-<%= link_to "Back", {:controller => "pages", :action => "show", :id => @post} %>
+ <div class="sub_header">
+      <%= link_to "Home", current_user, :class => "left buttons" %>
+      <%= link_to "Back to post", {:controller => "pages", :action => "show", :id => @post},  :class => "right buttons" %>
+  </div>
+<div class="logged_posts_wrapper">
+	 <p>Hi,</p>
+	 <p class="left_padding">I am <strong><%= @user.profile.uname.capitalize %>.</strong></p>
+	 <p class="left_padding"><%= @user.profile.about %>.</p>
+	 <p class="left_padding">I created <%= @user.posts.count %> posts and I commented <%= @user.comments.count%> times.</p>
+	 <p class="left_padding">My website is <%= @user.profile.website %>.</p>
+</div>

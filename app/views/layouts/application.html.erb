@@ -3,22 +3,76 @@
 <head>
   <title>NewBlog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<% if user_signed_in? %>
-   <%= link_to "Edit profile", edit_user_registration_path %>
-   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% else %>
-   <%= link_to "Login", new_user_session_path %>
-   <%= link_to "Signup", new_user_registration_path %>
-<% end %>
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
  
-<%= yield %>
+<header>
+    <div class="group">
+    <div id="left_side_logo">
+        <a href="root_path">
+    	<%= link_to( image_tag("logo22.jpg", height:'60', width: '60', alt: 'logo'), root_path ) %>
+    </div>
+    <div id="right_side">
+	    <ul>
+	     <%if user_signed_in? %>
+	      
+		   <li class="buttons"><%= link_to "Settings", edit_user_registration_path %></li>
+		   <li class="buttons"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+	 
+		<% else %>
+	      
+		   <li class="buttons"><%= link_to "LOGIN", new_user_session_path %></li>
+		   <li class="buttons"><%= link_to "Sign Up. It's Free!", new_user_registration_path %></li>
+		 
+		<% end %>
+		</ul>
+		 
+    </div>
+    </div>
+    <div class="clear1"></div>
+</header>
+    
+<section id="main_content">
+   <!-- flash -->
+   <div class="flash">
+	    <% if user_signed_in? %>
+	       <div class="logged_posts_wrapper top_margin"> 
+	    <% end %>
+		<% flash.each do |name, msg| %>
+		   <%= content_tag(:div, msg, class: alert)%>
+	    <% end %>
+	    </div>
+    </div>
+
+    <!-- aside -->
+    <% if user_signed_in? %>
+      <aside id="aside_wrapper">
+	        <h3><%= current_user.name.capitalize %>'s Dashboard </h3>  
+	  
+		    <% if current_user.profile.nil?%>
+		        <%= link_to "create Profile", new_user_profile_path(@user) %>
+		    <% else %>
+			   <p><strong><%= current_user.profile.uname unless current_user.profile.uname.empty? %></strong><p>
+			    <p><%= current_user.profile.about  unless current_user.profile.about.empty? %> <p>
+			   <p><%= current_user.profile.website unless current_user.profile.website.empty?%> </p>
+			   <%= link_to "Edit Profile", {:controller => "profiles", :action => "edit", :user_id =>current_user.id, :id => current_user.profile }, :class => "btn" %>
+		    <% end %>
+ 
+      </aside>
+    <% end %>
+    <%= yield %> <!-- yield -->
+   
+</section>
+ 
+ <!-- footer -->
+<footer> 
+  
+</footer>
+
+ 
 
 </body>
 </html>

@@ -1,3 +1,28 @@
-<% @tag.posts.each do |post| %>
-   <%= link_to post.title, post %>
- <% end %>
+<% if user_signed_in? %>
+    <div class="sub_header">
+       <%= link_to "Home", current_user, :class => "right buttons" %><br>
+    </div>
+    <div class="logged_posts_wrapper" > 
+<% else %>
+    <div class="posts_wrapper">
+<% end %>
+
+    <% @tag.posts.each do |post| %>
+	  <% if user_signed_in? %>
+	  	<div class="logged_post_wrapper"> 
+	  <% else %>
+	  	<div class="post_wrapper">
+	  <% end %>
+	   
+		<p class="title"><%= link_to post.title, user_post_path(post.user_id, post) if user_signed_in? %></p> 
+		 <p class="title"><%= link_to post.title, {:controller => "pages", :action => "show", :id => post.id } unless user_signed_in? %></p> 
+		<p class="date">Date: <em><%= post.created_at.strftime("%B, %d, %Y") %></em>, By:
+		<em><%= link_to post.user.profile.uname.capitalize, {:controller => "profiles", :action=> "show", :user_id => post.user, :post_id => post } if post.user.profile %></em></p>
+		    
+		<div class="line"></div>  
+
+	  </div>
+	<% end %>
+</div>
+
+ 

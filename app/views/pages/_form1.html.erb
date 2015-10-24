@@ -1,0 +1,8 @@
+<%= form_tag({:controller => "pages", :action => "search" }, method: "get" ) do %>
+    <select name="txt">
+	    <% Tag.all.each do |tag| %>
+	      <option value="<%= tag.name %>"><%= tag.name %></option>
+	    <% end %>
+    </select>
+	<%= submit_tag("search") %>
+<% end %>

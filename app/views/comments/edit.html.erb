@@ -1,3 +1,8 @@
+<div class="sub_header">
+    <%= link_to "Back", user_post_path(@post.user, @post), :class => "right buttons"%>  
+</div>
+
+<div class="logged_posts_wrapper">
 <%= form_for([@post, @comment]) do |f| %>
 	 
 	<%= f.label :body, "Your comments" %>:<br>
@@ -5,3 +10,4 @@
 	<br>
 	<%= f.submit %>
 <% end %>
+</div>

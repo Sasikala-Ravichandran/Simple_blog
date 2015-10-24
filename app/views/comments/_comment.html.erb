@@ -1,12 +1,17 @@
  
-  <%= link_to comment.commenter.profile.uname, {:controller => "profiles", :action => "show", :user_id => comment.user_id, :post_id => @post }  %><br>
-  <%= comment.body %><br>
-  <%= time_ago_in_words(comment.created_at) %><br>
+<li>
+   <p><%= link_to comment.commenter.profile.uname, {:controller => "profiles", :action => "show", :user_id => comment.user_id, :post_id => @post } , class: "link_tags" %></p>
+     
+    <p class="left_padding"><%= comment.body %></p>
+     
 
-   <% if user_signed_in? %>
-  <% if(@post.user.name == current_user.name) %>
-  <%= link_to "Edit", edit_post_comment_path(@post, comment)%>
-  <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
-  <% end %>
-  <% end %>
-  <hr>
+     <% if user_signed_in? %>
+      <% if(@post.user.name == current_user.name) %>
+        <%= link_to "Edit", edit_post_comment_path(@post, comment), :class => "links"%>
+        <%= link_to "Delete", post_comment_path(@post, comment), method: :delete, :class => "links" %>
+      <% end %>
+    <% end %>
+    <div class="line"></div>
+</li>
+ 
+ 

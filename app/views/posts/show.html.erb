@@ -1,27 +1,36 @@
-<%= link_to "Back to Dashboard", @user%><br>
-<hr>
-Title: <%= @post.title %><br>
+<section class="logged_posts_wrapper">
+	<div class="sub_header">
+	    <%= link_to "Home", current_user, :class => "right buttons" %><br>
+	</div>
+	<div class="left_padding">
+	   <div>	
+			<h2><%= @post.title %></h2>
+		    <p class="date">Date: <em><%= @post.created_at.strftime("%B, %d, %Y") %></em>
+	        <p><% unless @post.tags.empty? %>
+			      Tags of the post: <%= render @post.tags %> 
+			   <% end %>
+			</p>
 
-Content: <%= @post.body %><br>
+            <% if user_signed_in? %>
+				<% if(@post.user.name == current_user.name) %>
+					<%= link_to "Edit", edit_user_post_path(@user, @post), :class => "links" %>
+					<%= link_to "Delete", user_post_path(@user, @post), method: :delete, 
+														data: {confirm: "Delete the post?"}, :class => "links"%>
+				<% end %>
+			<% end %>
 
+			<p class="left_padding"><%= @post.body %></p>
+		</div>
+		
+		<h5><%= link_to "Comments", "#", class: "links link_tags"%></h5>
+	    <div class="comments_wrapper"> 
 
-
-<%= link_to "Edit", edit_user_post_path(@user, @post)%>
-<%= link_to "Delete", user_post_path(@user, @post), method: :delete, 
-									data: {confirm: "Delete the post?"}%>
-
-
-<br>
-<% unless @post.tags.empty? %>
-Tags of the post: <%= render @post.tags %>
-<hr>
-<% end %>
-
-
-<h3>Comments(<%= @post.comments.count %>):</h3>
-<hr>
-<%= render @post.comments %>
-  
-<h3>Add Comments </h3>
-<%= render 'comments/form' %>
-<!-- <%= link_to "new comments", new_post_comment_path(@post)%> -->
+	       <ol>
+		    <%= render @post.comments %>
+		   </ol>
+		 
+			<%= render 'comments/form' %>
+			<!-- <%= link_to "new comments", new_post_comment_path(@post)%> -->
+		</div>
+	</div>
+</section>

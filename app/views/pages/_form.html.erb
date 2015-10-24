@@ -1,0 +1,7 @@
+<%= form_tag({:controller => "pages", :action => "search" }, method: "get" ) do %>
+   
+   <%= text_field_tag(:txt, nil, placeholder: "Search here") %>
+   
+   <%= image_submit_tag("search.png",:id=>"search") %> 
+
+<% end %>

@@ -8,6 +8,23 @@ class PagesController < ApplicationController
 	def show
 		@post = Post.find(params[:id])
 	end
-	def view
+
+    def search
+    	@text = params[:txt]
+		tag = Tag.find_by_name(params[:txt])
+        if(tag)
+        	unless (tag.posts.count == 0)
+           	   
+		      @posts = tag.posts
+       	   else
+       
+       	      @posts =  nil
+       	  end 
+       	else 
+       		 
+       		@posts = false
+       	end
+            render 'index'
 	end
+	 
 end
