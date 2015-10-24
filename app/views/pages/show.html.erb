@@ -19,15 +19,15 @@
 
    <p class="left_padding"><%= @post.body %></p>
 
-   <h5>Comments(<%= @post.comments.count %>):</h5>
- 
-   <%= render @post.comments %>
+   <h5><%= link_to "Comments", "#", class: "links link_tags", id: "comments-link"%></h5>
+   <div class="comments_wrapper"> 
+     <ol class="comments">
+        <%= render @post.comments %>
+     </ol>
   
-	
+     
     <% if user_signed_in? %> 
-	 <div class="comments_wrapper"> 
-	    <h3>Add Comments </h3>
-	    <%= render 'comments/form' %>
+	 	    <%= render 'comments/form' %>
 	 </div>
 	<% else %>
 	    <p><%= link_to "login to comment", new_user_session_path, class: "link_tags" %></p> 

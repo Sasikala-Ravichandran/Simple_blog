@@ -13,7 +13,11 @@ class CommentsController < ApplicationController
 		@comment.user_id = current_user.id
 		@comment.save
          
-        redirect_to ([@post.user, @post])
+        respond_to do |format|
+           format.html { redirect_to ([@post.user, @post]) } 
+           format.js 
+        end
+        
 	end
 
     def edit
