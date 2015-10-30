@@ -58,6 +58,16 @@ header{
 } 
 /* Header End */
 
+.welcome{
+     
+    background: image-url("welcome.jpg") no-repeat;
+    background-position: center center;
+    background-size: contain;
+    position:absolute;
+    top: 60px;
+    width: 100%;
+    height: 90%;
+}
  
 #main_content{
 	width: 100%;
@@ -156,7 +166,7 @@ header{
     width: 250px;
     position: absolute;
     top: 60px;
-    bottom: -2000px;
+    bottom: -1000px;
     left: 0px;
     
     h3{
@@ -171,7 +181,7 @@ header{
 		  margin:  auto;
 		  width: 35%;
 		  outline: none;
-			padding: .5em 1.5em;
+			padding: 1em 1.5em;
 			&:hover {
 			  color: #fff;
 			  border-radius: .5em;
@@ -280,6 +290,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="hid
 	}
 	input[type="submit"] {
 		outline: none;
+
 		background: transparent;
 		border: 1px solid #d6dce0;
 		padding: .5em 1.5em;
@@ -295,7 +306,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="hid
      
     position: absolute;
     top: 0px;
-    left: 400px;
+    left: 500px;
     width: 300px;
     margin-top: 10px;
   }

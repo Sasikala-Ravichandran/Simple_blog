@@ -1,6 +1,6 @@
 <div class="search_input">
 	<%= render 'form' %>
-	<!--<%= render 'form1' %> -->
+	 
 </div>
  
 <% if user_signed_in? %>
@@ -8,28 +8,22 @@
       <%= link_to "Home", current_user, :class => "right buttons" %><br>
   </div>
       <div class="logged_posts_wrapper" > 
+      <div class="logged_post_wrapper"> 
 <% else %>
    <div class="posts_wrapper">
+   <div class="post_wrapper">
 <% end %>
 
-<% if user_signed_in? %>
-	<div class="logged_post_wrapper"> 
-<% else %>
-	<div class="post_wrapper">
-<% end %>
-
-	<% unless (@posts == nil || @posts == false ) %>
-	    <% @posts.each do |post| %>
-		    <p class="title"><%= link_to post.title, {:controller => "pages", :action => "show", :id => post.id }%></p> 
+<% unless (@posts == nil || @posts == false ) %>
+	<% @posts.each do |post| %>
+		<p class="title"><%= link_to post.title, {:controller => "pages", :action => "show", :id => post.id }%></p> 
 			 
-			<p class="date">Date: <em><%= post.created_at.strftime("%B, %d, %Y") %></em>, By: <em><%= link_to post.user.profile.uname.capitalize, {:controller => "profiles", :action => "show", :user_id => post.user, :post_id => post } if post.user.profile %></em></p>
+		<p class="date">Date: <em><%= post.created_at.strftime("%B, %d, %Y") %></em>, By: <em><%= link_to post.user.profile.uname.capitalize, {:controller => "profiles", :action => "show", :user_id => post.user, :post_id => post } if post.user.profile %></em></p>
 		    
-		    <div class="line"></div>  
-
-			
-		<% end %>
-    <% else %>
+		<div class="line"></div>  
+	<% end %>
+<% else %>
        <p>No post is associated with "<%= @text %>" </p>
-    <% end %>
-   </div>
+<% end %>
+</div>
 </div>
