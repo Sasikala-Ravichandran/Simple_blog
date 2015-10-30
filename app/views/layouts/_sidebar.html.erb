@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+      <aside id="aside_wrapper">
+	        <h3><%= current_user.name.capitalize %>'s Dashboard </h3>  
+	  
+		    <% if current_user.profile.nil?%>
+		        <%= link_to "+ Profile", new_user_profile_path(@user), :class => "btn" %>
+		    <% else %>
+			   <p><strong><%= current_user.profile.uname unless current_user.profile.uname.empty? %></strong><p>
+			    <p><%= current_user.profile.about  unless current_user.profile.about.empty? %> <p>
+			   <p><%= current_user.profile.website unless current_user.profile.website.empty?%> </p>
+			   <%= link_to "Edit Profile", {:controller => "profiles", :action => "edit", :user_id =>current_user.id, :id => current_user.profile }, :class => "btn" %>
+		    <% end %>
+ 
+      </aside>
+<% end %>
