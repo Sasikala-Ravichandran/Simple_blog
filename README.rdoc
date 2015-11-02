@@ -1,12 +1,11 @@
 == Simple Blog	
 
-The objective of this project is to learn building an app with basic UI 
+The objective of this project is to learn building an app with basic UI(sass, coffescript and ajax)
 
 Gems used in this app:
 
 * Devise for user authentication
 
- [View Demo here](https://pacific-inlet-2878.herokuapp.com/)
+ {View Demo here}[https://pacific-inlet-2878.herokuapp.com/]
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ 
