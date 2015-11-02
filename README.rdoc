@@ -1,6 +1,6 @@
 == Simple Blog	
 
-   Built an app with basic UI features using sass, coffescript and ajax..
+Built an app with basic UI features using sass, coffescript and ajax..
 
 Gems used in this app:
 
