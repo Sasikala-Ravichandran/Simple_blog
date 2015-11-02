@@ -1,13 +1,11 @@
 == Simple Blog	
 
-   Built an first app with basic UI features using sass, coffescript and ajax..
-
-View Demo here[https://pacific-inlet-2878.herokuapp.com/]
+   Built an app with basic UI features using sass, coffescript and ajax..
 
 Gems used in this app:
 
 * Devise for user authentication
 
- 
+Demo[https://pacific-inlet-2878.herokuapp.com/] 
 
  
