@@ -6,9 +6,7 @@
      
 
      <% if user_signed_in? %>
-     sasi
       <% if(@post.user.name == current_user.name) %>
-      kala
         <%= link_to "Edit", edit_post_comment_path(@post, comment), :class => "links"%>
         <%= link_to "Delete", post_comment_path(@post, comment), method: :delete, :class => "links" %>
       <% end %>
