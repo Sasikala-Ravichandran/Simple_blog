@@ -4,18 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def store_return_to
-    session[:return_to] = request.url
+    session[:return_to] = request.url if request.get?
   end
 
   def after_sign_in_path_for(resource)
   	session.delete(:return_to) || current_user
   end
 
-=begin 
-  def redirect_back_or_default(default)
-  	http://stackoverflow.com/questions/9489660/return-user-to-previous-page-after-login-rails
-    redirect_to(session[:return_to] || default)
-    session[:return_to] = nil
-end
-=end 
 end
