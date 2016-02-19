@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+
+/postgres_database_yml
